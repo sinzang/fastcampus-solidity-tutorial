@@ -13,7 +13,7 @@ contract ERC20Token {
 
     mapping (address => bool) public blackList;
 
-    function ERC20Token(
+    constructor(
         uint256 _totalSupply
     ) public {
         totalSupply = _totalSupply * 10 ** uint256(decimals);
@@ -45,7 +45,7 @@ contract ERC20Token {
     function blockListRegistry(address to) public {
         blackList[to] = true;
     }
-    
+
     function blockListUnRegistry(address to) public {
         blackList[to] = false;
     }

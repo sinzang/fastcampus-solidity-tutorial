@@ -18,7 +18,7 @@ contract ERC20TokenComplete {
         _;
     }
 
-    function ERC20TokenComplete(
+    constructor(
         uint256 _totalSupply
     ) public {
         owner = msg.sender;

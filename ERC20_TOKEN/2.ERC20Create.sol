@@ -9,7 +9,7 @@ contract ERC20Create {
     mapping(address => uint256) public balanceOf;
     event Transfer(address indexed from, address indexed to, uint amount);
 
-    function ERC20Create(
+    constructor(
         uint256 _totalSupply
     ) public {
         totalSupply = _totalSupply * 10 ** uint256(decimals);

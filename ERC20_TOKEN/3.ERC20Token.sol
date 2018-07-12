@@ -11,7 +11,7 @@ contract ERC20Token {
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Burn(address indexed from, uint256 value);
 
-    function ERC20Token(
+    constructor(
         uint256 _totalSupply
     ) public {
         totalSupply = _totalSupply * 10 ** uint256(decimals);

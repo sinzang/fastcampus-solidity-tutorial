@@ -8,7 +8,7 @@ contract ERC20TokenComplete {
 
     uint256 public totalSupply ;
 
-    mapping(address => uint256) public balance;
+    mapping(address => uint256) public balanceOf;
 
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Burn(address indexed from, uint256 value);
@@ -25,27 +25,27 @@ contract ERC20TokenComplete {
     ) public {
         owner = msg.sender;
         totalSupply = _totalSupply * 10 ** uint256(decimals);
-        balance[msg.sender] = totalSupply;
-        emit Transfer(address(this), msg.sender, totalSupply);
+        balanceOf[msg.sender] = totalSupply;
+        Transfer(address(this), msg.sender, totalSupply);
         assert(true);
     }
 
     function transfer(address to, uint amount)  public returns(bool) {
-        require(balance[msg.sender] >= amount); // 보내는 사람의 보유량 확인
-        balance[msg.sender] -= amount;
-        balance[to] += amount;
-        emit Transfer(msg.sender, to, amount);
+        require(balanceOf[msg.sender] >= amount); // 보내는 사람의 보유량 확인
+        balanceOf[msg.sender] -= amount;
+        balanceOf[to] += amount;
+        Transfer(msg.sender, to, amount);
     }
 
     function burn(uint amount) onlyOwner public {
         require(totalSupply >= amount); // 전체 보유량 확인
-        balance[msg.sender] -= amount;
+        balanceOf[msg.sender] -= amount;
         totalSupply -= amount;
         emit Burn(msg.sender, amount);
     }
 
     function addPublish(uint amount) onlyOwner public{
         totalSupply += amount * 10 ** uint(decimals); // totalSupply = totalSupply + amount * 10 ** uint(decimals);
-        balance[msg.sender] +=  amount * 10 ** uint(decimals);
+        balanceOf[msg.sender] +=  amount * 10 ** uint(decimals);
     }
 }

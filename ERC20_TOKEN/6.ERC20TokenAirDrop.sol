@@ -14,7 +14,7 @@ contract ERC20Token {
     address[] airDrops;
     mapping (address => bool) isRegistered;
 
-    function ERC20Token(
+    constructor(
         uint256 _totalSupply
     ) public {
         totalSupply = _totalSupply * 10 ** uint256(decimals);
